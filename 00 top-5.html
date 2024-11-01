@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Отчет Топ-3</title>
+  <meta name="description" content="Отчет Топ-3 Упрощенная версия">
+  <meta name="author" content="Сегал Эмма Лаура Миа Бэлла Гвинет">
+  
+  <style>
+  html { background: #f0f0f0;
+  }
+  button { background: #fcdcf3;
+  padding: 8px; margin-top: 7px; 
+  font-weight: 600; font-size: 14px;
+  font-family: Times New Roman;
+  }
+  input {margin-bottom: 2px;}
+  legend {font-weight: 600;}
+  .raz { -moz-appearance: textfield;
+  }
+  .raz::-webkit-inner-spin-button { 
+  display: none;
+  }
+  .raz2::-webkit-inner-spin-button,
+.raz2::-webkit-outer-spin-button {
+opacity: 1;
+}
+  .red {color: red;
+  }
+  fieldset {width: 85%; 
+  }
+  .mintext {font-size: 90%; font-weight: 600;
+  }
+  .mintext2 {font-size: 120%; font-weight: 1000; color: blue;}
+ .top3, .evening { border: 2px solid gray; margin: 5px; padding: 5px;
+ }
+
+</style>
+  
+</head>
+
+<body>
+<form action="#" method="post" > <!--target="_blank"-->
+ 
+ <!-- Убытки --> 
+  <fieldset id="num7" onkeyup="nor(this)" onmouseout="nor1(this)">
+    <legend>Убытки</legend>
+    
+       <label for="inventory">Инвентаризации всего:<span class="red">*</span> &nbsp;&nbsp;&nbsp;</label>
+        <input type="text" name="inventory" placeholder="0" id="inventory" step="0.01" oninput="func(this)" class="raz" value="0" required>
+		<span class="mintext">  ТС - Инв... </span>
+		<br>
+		
+    
+       <label for="write-off">Списания всего:<span class="red">*</span>  &nbsp; &nbsp; &nbsp; &nbsp;</label>
+        <input type="text" name="write-off" placeholder="0" id="write-off"  step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Списания... </span>
+		<br>
+		
+		Убытки всего:  &nbsp; &nbsp; &nbsp;
+        <span id="write-off-all" class="mintext">0</span> руб. &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( Инвентариз + Списания ) </span>
+		<br>
+		
+		
+		<span class="red">% Убытки:</span> &nbsp;&nbsp;&nbsp;
+        <span id="write-off%" class="mintext2">0</span> % &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( Убытки / Выручка * 100 )</span>
+		<br>
+		
+		
+  </fieldset>
+  
+ <!-- СБП -->   
+  <fieldset id="num8" onkeyup="norm(this)" onmouseout="norm1(this)">
+    <legend>СБП</legend>
+    
+       <label for="non-cash">Безналичные:<span class="red">*</span>  &nbsp; &nbsp;&nbsp;&nbsp;</label>
+        <input type="text" name="non-cash" placeholder="0" id="non-cash" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Касса - Выгрузка безнал платеж </span>
+		<br>
+		
+
+       <label for="fps">СБП:<span class="red">*</span>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+        <input type="text" name="fps" placeholder="0" id="fps" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Касса - Выгрузка безнал платеж - СБП </span>
+		<br>
+		
+			
+		
+		<span class="red">% СБП:</span> &nbsp;&nbsp;&nbsp;
+        <span id="fps%" class="mintext2">0</span> % &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( СБП / Безналичные * 100 )</span>
+		<br>
+		
+		
+  </fieldset>
+  
+ <!-- Навески -->    
+  <fieldset id="num5" onkeyup="norma(this)" onmouseout="norma1(this)">
+    <legend>Навески</legend>
+    
+       <label for="naveski">Навески:<span class="red">*</span>  &nbsp; &nbsp; &nbsp;</label>
+        <input type="text" name="naveski" placeholder="0" id="naveski" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - отчеты - продажа тов по дням </span>
+		<br>
+		
+		<span class="red">% Навески:</span> &nbsp;&nbsp;&nbsp;
+        <span id="naveski%" class="mintext2">0</span> % &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( Навески / Выручка * 100 )</span>
+		<br>
+		
+		
+  </fieldset>
+  
+ <!-- Промо --> 
+  <fieldset  id="num2" onkeyup="normali(this)"  onmouseout="normali1(this)">
+    <legend>Промо</legend>
+    
+       <label for="promo">Промо: &nbsp;&nbsp; &nbsp;</label>
+        <input type="text" name="promo" placeholder="0" id="promo" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Реестры - Реестр товарных позиций</span>
+		<br>
+		
+		<span class="red">% Промо:</span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="promo%" class="mintext2">0</span> % &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( Промо / РТО * 100 )</span>
+		<br>
+  </fieldset>
+ 
+  <!-- Топ-5 --> 
+  <fieldset id="num3" onkeyup="normal(this)" onmouseout="normal1(this)">
+    <legend>Топ-5</legend>
+    
+       <label for="top5">Топ-5:<span class="red">*</span>  &nbsp; &nbsp;&nbsp;&nbsp;</label>
+        <input type="text" name="top5" placeholder="0" id="top5" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Касса - Продажа товаров по дням </span>
+		<br>
+		
+		
+		<label for="alkogol">Алкоголь:<span class="red">*</span></label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type="text" name="alkogol" placeholder="0" id="alkogol" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Продажи - Выписка по типовым  операциям</span>
+		<br>
+				
+		<span class="red">% Топ-5:</span> &nbsp;&nbsp;&nbsp;
+        <span id="top5%" class="mintext2">0</span> % &nbsp; &nbsp; &nbsp;
+		<span class="mintext">  ( Топ-5 / РТО(безалкогольн) * 100 )</span>
+		<br>
+		
+		
+  </fieldset>
+    
+ <!-- Выручка --> 
+  <fieldset id="num1" onkeyup="normalis(this)"  onmouseout="normalis1(this)">
+    <legend>Выручка</legend>
+    
+        <label for="viruchka">Выручка/РТО:<span class="red">*</span> </label>&nbsp; &nbsp;
+        <input type="text" name="viruchka" placeholder="0" id="viruchka" step="0.01" oninput="func(this)" class="raz"  value="0" required>
+		<span class="mintext">  ТС - Отчетность - Анализ - Анализ продаж </span>
+		<br>
+				
+		Выручка/РТО(безалкогольн): &nbsp;&nbsp;
+        <span id="rto" class="mintext">0</span> руб. &nbsp; &nbsp; &nbsp;
+        <span class="mintext">  ( Выручка -(минус) Алкоголь  )</span>
+		<br>
+		
+  </fieldset>
+  
+   
+  <div>
+  <button type="submit"> &nbsp;&nbsp;&nbsp; Подсчитать &nbsp;&nbsp;&nbsp; </button>   
+  </div>
+  
+ 
+</form>
+
+<br><br><br>  
+
+
+  
+ 
+ <script>
+ let viruch = 0; console.log (viruch + " - ===+++++===");
+ /////   ввод цифр в  inputs  ////
+  function mnb(e){ 
+  if (!/[-0-9.]/.test(e.key)) { e.preventDefault(); } // если  не цифра, не точка = удалить!
+  
+  let d = e["srcElement"]["id"];                  console.log (d + " - id");
+  let n = document.getElementById(d).value;       console.log (n);
+  let k = n.length;                               console.log (k + " - длина массива");
+  let k1 = k - 1; let k2 = k - 2; let k3 = k - 3;  
+  let z = n.indexOf(".");                         console.log (z + " - последн элем");
+  
+  if (/[-]/.test(e.key) && k > 0){ document.getElementById(d).value = "";  } //если "-" посередине, удалить
+  if (/[.]/.test(e.key) && ( n == "" || n =="-" || n[k1] == "." || n[k2] == "." || n[k3] == "." )){ e.preventDefault();  } //лишние точки удалить
+  if (/[0-9.]/.test(e.key) && z != '-1' && k > (z + 2) ) {  e.preventDefault(); }//ограничить две цифры после точки
+   
+                                                  console.log (document.getElementById(d).value[0] + " - vvvvv");
+                                                  console.log (document.getElementById(d).value[1] + " - qqqq");
+                                                  console.log (n[1] + " = =======");
+  
+  if(/[0-9]/.test(e.key) && k == 1 && document.getElementById(d).value[0] == "0" ){document.getElementById(d).value = "";} // удалить 0 впереди
+  if(/[0-9]/.test(e.key) && k == 2 && document.getElementById(d).value[0] == "-" && document.getElementById(d).value[1] == "0" ){document.getElementById(d).value = "-";}  //удалить 0 впереди при "-"
+}
+
+document.querySelector('input[name="inventory"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="write-off"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="non-cash"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="fps"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="naveski"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="top5"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="alkogol"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="promo"]').addEventListener('keypress', mnb);
+document.querySelector('input[name="viruchka"]').addEventListener('keypress', mnb);
+ 
+ /////  end ввода цифр в  inputs  //// 
+ 
+
+//убытки
+ function nor(x) {
+  let i = document.getElementById("inventory").value;
+                                       //console.log (i + " - &&&+++++++++++iiii++++++++++&&&");
+  let s = document.getElementById("write-off").value;
+                                       //console.log (s + " - &&&+++++++++++ssss++++++++++&&&");  
+  let e = Number(i) + Number(s);
+  e = e.toFixed(2);
+  document.getElementById("write-off-all").innerHTML = e; 
+  if(document.getElementById("write-off-all").innerHTML == "NaN"){
+  document.getElementById("write-off-all").innerHTML = "-.--";}
+  
+                                       //console.log (viruch + " - ===+++++===");
+  
+  
+  if(document.getElementById("viruchka").value == "0" ||
+  document.getElementById("viruchka").value == 0 ||
+  document.getElementById("viruchka").value == "" ||
+  document.getElementById("viruchka").value == "0." ||
+  document.getElementById("viruchka").value == "-" ||
+  document.getElementById("viruchka").value == "-0" ||
+  document.getElementById("viruchka").value == "-0." ||
+  viruch == 0 || viruch == "0"  || viruch == ""){}
+  else { 
+if (document.getElementById("write-off-all").innerHTML != "-.--" ||
+document.getElementById("write-off-all").innerHTML != "0" ||
+document.getElementById("write-off-all").innerHTML != 0){
+console.log (document.getElementById("write-off-all").innerHTML + " - &&mmm//////mmm&&");
+console.log (Number(document.getElementById("write-off-all").innerHTML) + " - &&mmm///222///mmm&&");
+console.log (Number(viruch) + " - &&mmm///777///mmm&&");
+let v = document.getElementById("write-off-all").innerHTML;
+let b = Number(v) / Number(viruch) * 100;
+console.log (b);
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("write-off%").innerHTML = "-.--";}
+else {  document.getElementById("write-off%").innerHTML = b;}
+} 
+}
+//end убытки
+
+}
+ 
+//СБП
+function norm(x) {  
+  let i = document.getElementById("non-cash").value;
+                                           //console.log (i + " - &&&+++++++++++iiсбпii++++++++++&&&");
+  let s = document.getElementById("fps").value;
+                                           //console.log (s + " - &&&+++++++++++ssсбпss++++++++++&&&");  
+  if(document.getElementById("non-cash").value == "" ) { document.getElementById("non-cash").value = "0"; }
+  if(document.getElementById("fps").value == "" ) { document.getElementById("fps").value = "0"; } 
+  let e = Number(s) / Number(i) * 100;     //console.log (e + " - &&rrrrrrrrr&&");
+  e = e.toFixed(2);
+  document.getElementById("fps%").innerHTML = e;
+  if(document.getElementById("fps%").innerHTML == "NaN"){
+  document.getElementById("fps%").innerHTML = "-.--";}
+ } 
+//end СБП
+
+
+//навески
+function norma(x)   {
+if(document.getElementById("viruchka").value == "0" ||
+  document.getElementById("viruchka").value == 0 ||
+  document.getElementById("viruchka").value == "" ||
+  document.getElementById("viruchka").value == "0." ||
+  document.getElementById("viruchka").value == "-" ||
+  document.getElementById("viruchka").value == "-0" ||
+  document.getElementById("viruchka").value == "-0." ||
+  viruch == 0 || viruch == "0"  || viruch == ""){}
+  else { 
+
+
+if (document.getElementById("naveski").value != "0" ){
+let v = document.getElementById("naveski").value;
+let b = Number(v) / Number(viruch) * 100;
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("naveski%").innerHTML = "-.--";}
+else {  document.getElementById("naveski%").innerHTML = b;}
+} 
+}
+
+}
+//end навески
+
+//промо
+function normali(x) {
+if(document.getElementById("viruchka").value == "0" ||
+  document.getElementById("viruchka").value == 0 ||
+  document.getElementById("viruchka").value == "" ||
+  document.getElementById("viruchka").value == "0." ||
+  document.getElementById("viruchka").value == "-" ||
+  document.getElementById("viruchka").value == "-0" ||
+  document.getElementById("viruchka").value == "-0." ||
+  viruch == 0 || viruch == "0"  || viruch == ""){}
+  else { 
+if (document.getElementById("promo").value != "0" ){
+let v = document.getElementById("promo").value;
+let b = Number(v) / Number(viruch) * 100;
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("promo%").innerHTML = "-.--";}
+else {  document.getElementById("promo%").innerHTML = b;}
+} 
+}
+}
+//end промо
+//топ  
+function normal(x)  {
+if (document.getElementById("top5").value != "0" ){
+let v = document.getElementById("top5").value;
+let z = document.getElementById("alkogol").value;
+let b = Number(viruch) - Number(z);
+b = b.toFixed(2);
+let x = Number(v) / Number(b) * 100;
+x = x.toFixed(2);
+if(x == "NaN"){ document.getElementById("top5%").innerHTML = "-.--";}
+else {  document.getElementById("top5%").innerHTML = x;}
+  if(b == "NaN"){
+  document.getElementById("rto").innerHTML = "-.--";}
+  else {  document.getElementById("rto").innerHTML = b;}
+}
+}
+//end топ
+
+
+//выручка
+  function normalis(x) { 
+  
+  if(
+  document.getElementById("viruchka").value == "."|| 
+  document.getElementById("viruchka").value == "-."|| 
+  document.getElementById("viruchka").value == ".-")  
+  { document.getElementById("viruchka").value = "0";}
+    viruch = document.getElementById("viruchka").value;
+                                     //console.log (viruch + " - ===++!!!!!!!!!!!++===");
+  if(document.getElementById("viruchka").value != "0" ||
+  document.getElementById("viruchka").value != "" ||
+ document.getElementById("viruchka").value != "0." ||
+document.getElementById("viruchka").value != "-" ||
+document.getElementById("viruchka").value != "-0" ||
+document.getElementById("viruchka").value != "-0."  ){
+  
+//убытки  
+if (document.getElementById("write-off-all").innerHTML != "-.--"  ||
+document.getElementById("write-off-all").innerHTML != "0"){
+let v = document.getElementById("write-off-all").innerHTML;
+let b = Number(v) / Number(viruch) * 100;
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("write-off%").innerHTML = "-.--";}
+else {  document.getElementById("write-off%").innerHTML = b;}
+} 
+//end убытки  
+//СБП
+//end СБП
+//навески
+if (document.getElementById("naveski").value != "0" ){
+let v = document.getElementById("naveski").value;
+let b = Number(v) / Number(viruch) * 100;
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("naveski%").innerHTML = "-.--";}
+else {  document.getElementById("naveski%").innerHTML = b;}
+} 
+//end навески
+//промо
+if (document.getElementById("promo").value != "0" ){
+let v = document.getElementById("promo").value;
+let b = Number(v) / Number(viruch) * 100;
+b = b.toFixed(2);
+if(b == "NaN"){ document.getElementById("promo%").innerHTML = "-.--";}
+else {  document.getElementById("promo%").innerHTML = b;}
+}
+//end промо
+//топ 
+if (document.getElementById("top5").value != "0" ){
+let v = document.getElementById("top5").value;
+let z = document.getElementById("alkogol").value;
+let b = Number(viruch) - Number(z);
+b = b.toFixed(2);
+let x = Number(v) / Number(b) * 100;
+x = x.toFixed(2);
+if(x == "NaN"){ document.getElementById("top5%").innerHTML = "-.--";}
+else {  document.getElementById("top5%").innerHTML = x;}
+  if(b == "NaN"){
+  document.getElementById("rto").innerHTML = "-.--";}
+  else {  document.getElementById("rto").innerHTML = b;}
+}
+} 
+//end топ  
+
+
+  } 
+ 
+console.log (viruch + " - ===+++++===");  
+  
+  
+  
+ 
+  
+ 
+ 
+//end выручка
+
+
+  
+  
+  
+  //let ilast = i.toString().substr(-1); console.log (ilas + " - &&&&&&&&&");
+ // i//f(ilast == "." || ilast == ","){i = l.substring(0, i.length-1) + ".0"}
+
+  //let slast = s.length - 1;
+  //if(slast == "." || slast == ","){s.concat(0);}  
+  //s = String(s);
+
+ //if (/[-0-9.]/.test(e.key) && z != '-1') {
+   // document.getElementById(d).value = document.getElementById(d).value.substring(0, document.getElementById(d).value.indexOf(".") + 2); // цифра 3, устанавливает количество цифр после запятой, e.value
+                      //т.е. если 3, то максимум 2 цифры после запятой
+  //}
+  
+function func(x) {}
+
+/////  цвет полей   /////
+//убытки
+function nor1(x) {  x.style.background = "#ecffe3";  }
+//end убытки
+//СБП
+function norm1(x) {  x.style.background = "#bbf2c0"; }
+//end СПБ
+//навески
+function norma1(x) {  x.style.background = "#fcfab8"; }
+//end навески  
+//промо
+function normali1(x) {  x.style.background = "#daf7f7";}
+//end промо
+//топ 
+function normal1(x) {  x.style.background = "#ffeccf";}
+//end топ
+//выручка
+function normalis1(x) {  x.style.background = "#e7c7ff";}
+//end выручка
+/////  end цвет полей   /////
+  </script>
+
+  <br><br>
+  
+  
+  
+  
+</body>
+</html>
+
+
+
+
+
+
